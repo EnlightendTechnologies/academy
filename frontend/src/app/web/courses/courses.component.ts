@@ -33,7 +33,4 @@ export class CoursesComponent {
       error: (error) => console.error('Failed to fetch courses:', error),
     });
   }
-  // ontrr(): void {
-  //   this.router.navigate(['courses/detail']);
-  // }
 }

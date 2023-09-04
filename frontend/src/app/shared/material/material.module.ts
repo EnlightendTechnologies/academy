@@ -1,4 +1,3 @@
-
 import { NgModule } from '@angular/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,7 +10,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule, MatFormFieldControl } from '@angular/material/form-field';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -33,13 +32,17 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
-
+import { CdkStepper, CdkStepperModule } from '@angular/cdk/stepper';
 
 @NgModule({
-  imports:[
-    MatSortModule,MatPaginatorModule,MatTableModule,MatInputModule,
+  imports: [
+    MatSortModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatInputModule,
     MatFormFieldModule,
-    MatInputModule,],
+    CdkStepperModule
+  ],
   exports: [
     MatAutocompleteModule,
     MatButtonModule,
@@ -51,10 +54,10 @@ import { MatTreeModule } from '@angular/material/tree';
     MatDialogModule,
     MatDividerModule,
     MatExpansionModule,
-    MatFormFieldModule,
+    MatFormFieldModule, // Export it once
     MatGridListModule,
     MatIconModule,
-    MatInputModule,
+    MatInputModule, // Export it once
     MatListModule,
     MatMenuModule,
     MatNativeDateModule,
@@ -74,7 +77,8 @@ import { MatTreeModule } from '@angular/material/tree';
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
-    
+    CdkStepperModule,
+    CdkStepper
   ],
   providers: [
     {

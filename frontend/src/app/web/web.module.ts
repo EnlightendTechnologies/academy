@@ -2,9 +2,6 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { MAT_DATE_LOCALE } from '@angular/material/core'
 import { WebRoutingModule } from './web-routing.module';
 import { CommonModule } from '@angular/common';
-
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -51,8 +48,6 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     WebRoutingModule,
     MaterialModule,
-    FormsModule,
-    ReactiveFormsModule,
     MdbCarouselModule,
     SocialLoginModule,
     MomentDateModule,

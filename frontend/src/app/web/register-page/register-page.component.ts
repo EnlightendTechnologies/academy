@@ -1,7 +1,6 @@
 import { Component, Directive, OnInit } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
@@ -13,7 +12,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from '../../shared/error-dialog/error-dialog.component';
 import { SuccessDialogComponent } from '../../shared/success-dialog/success-dialog.component';
-import { HttpResponse } from 'src/app/shared/model/HttpResponse';
+
 import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { VoucherService } from 'src/app/shared/service/voucher.service';
 import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog.component';
@@ -49,7 +48,6 @@ export class RegisterPageComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private http: HttpClient,
     private studentService: StudentService,
     private courseService:CourseService,
     private enrollmentService: EnrollementService,
