@@ -4,9 +4,10 @@ import { CoursesRoutingModule } from './courses-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CoursesComponent } from './courses.component';
 import { ViewCourseComponent } from './view-course/view-course.component';
+import { CreateCourseComponent } from './create-course/create-course.component';
 
 @NgModule({
-  declarations: [CoursesComponent,ViewCourseComponent],
+  declarations: [CoursesComponent,ViewCourseComponent, CreateCourseComponent],
   imports: [
     CommonModule,
     CoursesRoutingModule,
