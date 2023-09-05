@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   userpassword: string = 'Admin123456';
   loginForm!: FormGroup;
   passwordInputType: string = '';
-  loading: boolean = false;
+  isLoading: boolean = false;
 
   constructor(public formBuilder: FormBuilder, private route: Router) {
     this.loginForm = this.formBuilder.group({

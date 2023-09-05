@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { HomeComponent } from './home/home.component';
 import { WebComponent } from './web.component';
+import { FacultyComponent } from './faculty/faculty.component';
 
 
 
@@ -19,6 +20,7 @@ const routes: Routes = [
       {
         path: 'courses', loadChildren: () => import('./courses/courses.module').then((m) => m.CoursesModule),
       },
+      { path: 'faculty', component: FacultyComponent }
     ],
   },
 

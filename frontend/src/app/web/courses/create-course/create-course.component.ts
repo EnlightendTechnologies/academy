@@ -4,6 +4,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { CourseService } from 'src/app/shared/service/course.service';
 
 
 @Component({
@@ -12,18 +13,29 @@ import {
   styleUrls: ['./create-course.component.scss']
 })
 export class CreateCourseComponent {
+  isisLoading:boolean = false;
+  courseForm:FormGroup;
+  
 
-  courseForm:FormGroup
-  constructor(private formBuilder: FormBuilder,) { 
+  constructor(private formBuilder: FormBuilder,private courseService:CourseService) { 
     this.courseForm = this.formBuilder.group({
       id: [''],
-      name: ['', Validators.required],
-      description: ['', [Validators.required, Validators.pattern(/^\d{13}$/)]],
-      fee: ['', [Validators.required, Validators.pattern(/^\d{13}$/)]],
-      imageUrl: ['', [Validators.required, Validators.email]],
+      name: [''],
+      description: [''],
+      fee: [''],
+      imageUrl: [''],
     });
   }
   submitForm():void {
-    
+    console.log(this.courseForm);
+    if(this.courseForm.invalid) return;
+    this.courseService.createCourse(this.courseForm.value).subscribe({
+      next:(response) => {
+        this.isisLoading = false;
+        this.courseForm.reset();
+      },
+      error: (error) => console.error('Failed to fetch courses:', error),
+    })
+     
   }
 }

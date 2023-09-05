@@ -10,7 +10,7 @@ import { CourseService } from 'src/app/shared/service/course.service';
 })
 export class ViewCourseComponent implements OnInit {
   id: string | number = -1;
-  loading: boolean = false;
+  isLoading: boolean = false;
   courseList:Course[] = [];
 
   constructor(private route :ActivatedRoute,private courseService: CourseService){
@@ -23,7 +23,7 @@ export class ViewCourseComponent implements OnInit {
   getCourse():void {
     this.courseService.getCourse(this.id).subscribe({
       next: (response) => {
-        this.loading = false;
+        this.isLoading = false;
         this.courseList.push(response.data as unknown as Course)
       },
       error: (error) => console.error('Failed to fetch courses:', error),

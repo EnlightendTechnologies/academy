@@ -41,7 +41,7 @@ export class RegisterPageComponent implements OnInit {
   studentDataForm: FormGroup;
   availableCourses: Course[] = [];
   studentId: any;
-  loading: boolean = false;
+  isLoading: boolean = false;
   courseForm: FormGroup;
   selectedCourses: number[] = [];
   selectedDate: Date | undefined;
@@ -79,10 +79,10 @@ export class RegisterPageComponent implements OnInit {
   }
 
   fetchCourses() {
-    this.loading = true;
+    this.isLoading = true;
     this.courseService.getCourses().subscribe({
       next: (response) => {
-        this.loading = false;
+        this.isLoading = false;
         this.availableCourses = response.data.map((course: any) => ({
           ...course,
           checked: false,

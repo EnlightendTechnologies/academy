@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class CoursesComponent {
   selectedCourses: any[];
-  loading: boolean = false;
+  isLoading: boolean = false;
 
   constructor(private router: Router, private courseService: CourseService,) {
     this.selectedCourses = [];
@@ -21,10 +21,10 @@ export class CoursesComponent {
     }
   }
   fetchCourses(): void {
-    this.loading = true;
+    this.isLoading = true;
     this.courseService.getCourses().subscribe({
       next: (response) => {
-        this.loading = false;
+        this.isLoading = false;
         this.selectedCourses = response.data.map((course: any) => ({
           ...course,
           checked: false,

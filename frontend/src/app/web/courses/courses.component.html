@@ -18,6 +18,6 @@
   </div>
 </div>
 <button [routerLink]="['createCourse']">Create Course</button>
-<ng-container *ngIf="loading">
+<ng-container *ngIf="isLoading">
   <app-loader></app-loader>
 </ng-container>

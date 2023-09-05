@@ -38,24 +38,33 @@
         <div class="list-group-item">
           <div class="form-row">
             <mat-form-field class="border-#a0ce4e" appearance="outline">
-              <input placeholder="First Name" matInput type="text" formControlName="name" required name="name" />
+              <input placeholder="Name" matInput type="text" formControlName="name" required name="name" />
             </mat-form-field>
             <mat-form-field class="border-#a0ce4e" appearance="outline">
-              <input placeholder="First Name" matInput type="text" formControlName="description" required
+              <input placeholder="Description" matInput type="text" formControlName="description" required
                 name="description" />
             </mat-form-field>
             <mat-form-field class="border-#a0ce4e" appearance="outline">
-              <input placeholder="First Name" matInput type="text" formControlName="fee" required name="fee" />
+              <input placeholder="fee" matInput type="text" formControlName="fee" required name="fee" />
             </mat-form-field>
             <mat-form-field class="border-#a0ce4e" appearance="outline">
-              <input placeholder="First Name" matInput type="text" formControlName="imageUrl" required
+              <input placeholder="Image Url" matInput type="text" formControlName="imageUrl" required
                 name="imageUrl" />
             </mat-form-field>
 
           </div>
 
         </div>
+        <div class="card-action space-x-2">
+          <button type="submit" class="rounded-full rounded-full custom-btn">
+            Submit
+          </button>
+        </div>
       </form>
+     
     </div>
   </div>
 </div>
+<ng-container *ngIf="isisLoading">
+  <app-loader></app-loader>
+</ng-container>
