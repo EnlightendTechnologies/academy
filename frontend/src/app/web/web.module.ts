@@ -35,7 +35,6 @@ import { FacultyComponent } from './faculty/faculty.component';
     AvaialableCoursesComponent,
     HomeComponent,
     ErrorDialogComponent,
-
     successDialogComponent.SuccessDialogComponent,
     SidenavComponent,
     FooterComponent,
@@ -43,7 +42,6 @@ import { FacultyComponent } from './faculty/faculty.component';
     WebComponent,
     ConfirmDialogComponent,
     FacultyComponent
-
   ],
 
   imports: [

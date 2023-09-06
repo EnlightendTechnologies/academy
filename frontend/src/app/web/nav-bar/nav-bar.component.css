@@ -80,17 +80,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #302a77;
+  background-color: var(--background-color);
   padding: 20px 20px;
   z-index: 1;
-  transition:all 2s;
-
+  transition: all 2s;
 }
 .active {
-  position: fixed; 
+  position: fixed;
   top: 0;
   z-index: 2;
-
 }
 .navigation-bar ul {
   list-style-type: none;
@@ -133,15 +131,15 @@
 }
 
 .logo {
-  height: 40px; /* Adjust as needed */
-  width: 40px; /* Adjust as needed */
-  margin-right: 10px; /* Space between the logo and the title */
+  height: 40px;
+  width: 40px;
+  margin-right: 10px;
 }
 
 @media screen and (max-width: 600px) {
   .navigation-bar ul {
     position: absolute;
-    background: #302a77;
+    background: var(--background-color);
     flex-direction: column;
     width: 100%;
     transform: translateX(-100%);

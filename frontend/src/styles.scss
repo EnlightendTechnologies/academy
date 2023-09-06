@@ -11,7 +11,10 @@ html,
 body {
   height: 100%;
 }
-
+:root {
+  --background-color: #302a77;
+  --white: #ffffff;
+}
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
@@ -25,7 +28,7 @@ body {
 }
 
 .heading-row h3 {
-  color: #302a77;
+  color: var(--background-color);
 }
 
 .mat-mdc-text-field-wrapper {
@@ -36,5 +39,29 @@ body {
 @media only screen and (max-width: 720px) {
   .heading {
     font-size: 26px;
+  }
+}
+.custom-blue {
+  background-color: var(--background-color);
+}
+.custom-btn-bg {
+  color: var(--background-color);
+  background-color: white;
+  padding: 8px 12px;
+}
+.custom-btn {
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+  color: white;
+  background-color: var(--background-color);
+  padding: 6px 16px;
+}
+.fa {
+  margin: 0 2px 0;
+}
+@media only screen and (max-width: 480px) {
+  .custom-btn-bg, .custom-btn-bg {
+    font-size: 16px;
   }
 }
