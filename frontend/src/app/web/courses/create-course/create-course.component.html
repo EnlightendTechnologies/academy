@@ -1,5 +1,5 @@
-<!-- <div class="stepper-container">
-      <div class="form-container">
+<div class="stepper-container">
+      <!-- <div class="form-container">
         <form [formGroup]="courseForm" (submit)="submitForm()">
           <div class="list-group-item">
             <div class="form-row">
@@ -27,10 +27,10 @@
         <button matStepperNext class="rounded-full rounded-full custom-btn">
           Next
         </button>
-      </div>
+      </div> -->
 
 
-  </div> -->
+  </div>
 <div class="container">
   <div class="stepper-container">
     <div class="form-container">
@@ -48,9 +48,10 @@
               <input placeholder="fee" matInput type="text" formControlName="fee" required name="fee" />
             </mat-form-field>
             <mat-form-field class="border-#a0ce4e" appearance="outline">
-              <input placeholder="Image Url" matInput type="text" formControlName="imageUrl" required
-                name="imageUrl" />
+              <input placeholder="fee" matInput type="text" formControlName="imageUrl" required name="fee" />
+
             </mat-form-field>
+            <input type="file" (change)="onFileSelected($event)" accept="image/*">
 
           </div>
 
@@ -65,6 +66,9 @@
     </div>
   </div>
 </div>
-<ng-container *ngIf="isisLoading">
+<div *ngFor="let imagePath of uploadedImages">
+  <img [src]="imagePath" alt="Uploaded Image">
+</div>
+<ng-container *ngIf="isLoading">
   <app-loader></app-loader>
 </ng-container>
