@@ -50,15 +50,14 @@ public class FacultyController {
 
         List<FacultyList> facultyListItems = new ArrayList<>();
 
-        for (int i = 0; i < Math.min(3, facultyList.size()); i++) {
-            Faculty course = facultyList.get(i);
-            FacultyList courseListItem = new FacultyList();
-            courseListItem.setId(course.getId());
-            courseListItem.setName(course.getName());
-            courseListItem.setDescription(course.getDescription());
-            courseListItem.setDescription(course.getDesignation());
+        for (Faculty faculty : facultyList) {
+            FacultyList facultyListItem = new FacultyList();
+            facultyListItem.setId(faculty.getId());
+            facultyListItem.setName(faculty.getName());
+            facultyListItem.setDescription(faculty.getDescription());
+            facultyListItem.setDesignation(faculty.getDesignation()); // Assuming there's a 'setDesignation' method
 
-            facultyListItems.add(courseListItem);
+            facultyListItems.add(facultyListItem);
         }
 
         response.setStatus(HttpStatus.OK);
