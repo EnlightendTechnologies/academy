@@ -39,8 +39,8 @@ public class Course implements Serializable{
     @Column(name = "fee", length = 20)
     private double fee;
     
-    @Column(name = "url", length = 100)
-    private String url;
+    @Column(name = "imageUrl", length = 100)
+    private String imageUrl;
     
     @OneToMany(mappedBy = "course",fetch = FetchType.LAZY)
     @JsonIgnore
