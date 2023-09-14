@@ -29,12 +29,15 @@ public class Faculty implements Serializable {
     @Column(name = "name", length = 500)
     private String name;
 
+    @Column(name = "designation", length = 100)
+    private String designation;
+
     @Column(name = "description", length = 1000)
     private String description;
 
-    @Column(name = "email", length = 1000)
+    @Column(name = "email", length = 100)
     private String email;
 
-    @Column(name = "phoneNumber", length = 1000)
+    @Column(name = "phoneNumber", length = 11)
     private String phoneNumber;
 }
