@@ -22,7 +22,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Data
 @Table(name = "course")
 @NoArgsConstructor
-public class Course implements Serializable{
+public class Course implements Serializable {
 
     @Id
     @GeneratedValue(generator = "uuid2")
@@ -35,14 +35,20 @@ public class Course implements Serializable{
 
     @Column(name = "description", length = 1000)
     private String description;
-    
+
     @Column(name = "fee", length = 20)
     private double fee;
-    
+
     @Column(name = "imageUrl", length = 100)
     private String imageUrl;
-    
-    @OneToMany(mappedBy = "course",fetch = FetchType.LAZY)
+
+    @Column(name = "syllabus", length = 1000)
+    private String syllabus;
+
+    @Column(name = "courseIntroduction", length = 1000)
+    private String courseIntroduction;
+
+    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Enrollment> enrollments;
 

@@ -6,10 +6,13 @@ package com.enlightened.technologies.academy.controller;
 
 import com.enlightened.technologies.academy.AcademyApplication;
 import com.enlightened.technologies.academy.model.Course;
+import com.enlightened.technologies.academy.model.CourseList;
 import com.enlightened.technologies.academy.repository.CourseRepository;
 import com.enlightened.technologies.academy.utils.HttpResponse;
 import com.enlightened.technologies.academy.utils.Logger;
 import jakarta.servlet.http.HttpServletRequest;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -76,11 +79,24 @@ public class CourseController {
         HttpResponse response = new HttpResponse(request.getRequestURI());
         Logger.application.info(Logger.pattern, AcademyApplication.VERSION, logPrefix, "", "");
 
+        
+        
         List<Course> courses = courseRepository.findAll();
+        
+        List<CourseList> courseListItems = new ArrayList<>();
 
-        //Set and Send Response
+    for (int i = 0; i < Math.min(3, courses.size()); i++) {
+        Course course = courses.get(i);
+        CourseList courseListItem = new CourseList();
+        courseListItem.setId(course.getId());
+        courseListItem.setName(course.getName());
+        courseListItem.setDescription(course.getDescription());
+        courseListItem.setFee(course.getFee());
+        courseListItems.add(courseListItem);
+    }
+
         response.setStatus(HttpStatus.OK);
-        response.setData(courses);
+        response.setData(courseListItems);
         return ResponseEntity.status(response.getStatus()).body(response);
     }
 
