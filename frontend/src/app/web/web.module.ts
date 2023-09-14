@@ -24,7 +24,7 @@ import { WebComponent } from './web.component';
 import { MaterialModule } from '../shared/material/material.module';
 import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.component';
 import { SharedModule } from '../shared/shared.module';
-import { FacultyComponent } from './faculty/faculty.component';
+
 
 
 
@@ -41,7 +41,7 @@ import { FacultyComponent } from './faculty/faculty.component';
     CeoMessageComponent,
     WebComponent,
     ConfirmDialogComponent,
-    FacultyComponent
+
   ],
 
   imports: [

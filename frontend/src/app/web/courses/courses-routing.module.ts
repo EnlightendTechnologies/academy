@@ -7,7 +7,6 @@ import { CreateCourseComponent } from './create-course/create-course.component';
 const routes: Routes = [
   {
     path: '', component: CoursesComponent,
-    children: []
   },
   { path: 'detail/:id', component: ViewCourseComponent },
   { path: 'createCourse', component: CreateCourseComponent },
