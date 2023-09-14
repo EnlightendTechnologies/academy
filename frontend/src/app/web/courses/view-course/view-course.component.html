@@ -62,27 +62,18 @@
       </div>
       <div class="summary-content">
         <h3 class="text-2xl font-semibold sm:text-5xl text-left">Introduction</h3>
-        <p>{{courseList[0].name}} was initially released in 2002 by Microsoft and has since evolved into a powerful
-          platform for building diverse applications. It's not only restricted to Windows environments; with the advent
-          of .NET Core (now .NET 5+), it became cross-platform, supporting Linux and macOS as well. .NET's modular
-          architecture, performance enhancements, and extensive developer community have contributed to its popularity.
+        <p>{{courseList[0].name}} {{courseList[0]?.courseIntroduction}}
         </p>
       </div>
       <div class="summary-content">
         <h3 class="text-2xl font-semibold sm:text-5xl text-left">Syllabus</h3>
-        <p>Dotnet is the widely used framework for website and web app development and it is very easy to learn and
-          implement by beginners. We cover significant concepts such as Microsoft framework architecture, OOPs, ADO.Net,
-          ASP.Net, C#.Net, Visual Studio, and Web Services in our .Net Course Syllabus. The learners can develop
-          consoles, websites, web apps, and mobile apps through our Dot Net Course Syllabus and we make them prepare for
-          project development of top companies. Choosing the dot net is good for one’s career as it is still updating
-          its features in website and web app development. Check out the detailed scope and our .Net Course curriculum
-          by contacting SLA, the best .Net Training Institute in Chennai
+        <p>{{courseList[0]?.syllabus}}
         </p>
       </div>
       <div class="summary-content">
-        <h3 class="text-2xl font-semibold sm:text-5xl text-left">Job Opportunities after {{courseList[0].name}} Course
+        <h3 class="text-2xl font-semibold sm:text-5xl text-left">Job Opportunities after {{courseList[0]?.name}} Course
         </h3>
-        <p>{{courseList[0].name}} is the widely used framework for website and web app development and it is very easy
+        <p>{{courseList[0]?.name}} is the widely used framework for website and web app development and it is very easy
           to learn and
           implement by beginners. We cover significant concepts such as Microsoft framework architecture, OOPs, ADO.Net,
           ASP.Net, C#.Net, Visual Studio, and Web Services in our .Net Course Syllabus. The learners can develop
