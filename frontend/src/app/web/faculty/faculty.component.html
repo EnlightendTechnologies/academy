@@ -1,57 +1,22 @@
 <div class="container-fluid">
-    <div class="heading-row">
-        <h3 class="text-3xl font-semibold sm:text-5xl text-center">Faculty</h3>
-    </div>
-    <div class="faculty-container">
-        <div class="faculty">
-            <div class="faculty-column">
-                <div class="faculty-image">
-                    <img src="../../../assets/Matthew_2_listing.jpg" alt="Professor Jamal Akhtar">
-                </div>
-                <div class="faculty-content">
-                    <h3>Dr Ahmed Khan</h3>
-                    <h5>Professor At Harvad Univsersity</h5>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, illum totam! Ab quaerat porro
-                        dicta qui ipsam. Hic vitae veniam quibusdam rerum aliquam? Quaerat, magni sunt voluptates culpa
-                        earum aperiam.</p>
-                </div>
-            </div>
-            <div class="faculty-column">
-                <div class="faculty-image">
-                    <img src="../../../assets/Matthew_2_listing.jpg" alt="Professor Jamal Akhtar">
-                </div>
-                <div class="faculty-content">
-                    <h3>Dr Ahmed Khan</h3>
-                    <h5>Professor At Harvad Univsersity</h5>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, illum totam! Ab quaerat porro
-                        dicta qui ipsam. Hic vitae veniam quibusdam rerum aliquam? Quaerat, magni sunt voluptates culpa
-                        earum aperiam.</p>
-                </div>
-            </div>
-            <div class="faculty-column">
-                <div class="faculty-image">
-                    <img src="../../../assets/Matthew_2_listing.jpg" alt="Professor Jamal Akhtar">
-                </div>
-                <div class="faculty-content">
-                    <h3>Dr Ahmed Khan</h3>
-                    <h5>Professor At Harvad Univsersity</h5>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, illum totam! Ab quaerat porro
-                        dicta qui ipsam. Hic vitae veniam quibusdam rerum aliquam? Quaerat, magni sunt voluptates culpa
-                        earum aperiam.</p>
-                </div>
-            </div>
-            <div class="faculty-column">
-                <div class="faculty-image">
-                    <img src="../../../assets/Matthew_2_listing.jpg" alt="Professor Jamal Akhtar">
-                </div>
-                <div class="faculty-content">
-                    <h3>Dr Ahmed Khan</h3>
-                    <h5>Professor At Harvad Univsersity</h5>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, illum totam! Ab quaerat porro
-                        dicta qui ipsam. Hic vitae veniam quibusdam rerum aliquam? Quaerat, magni sunt voluptates culpa
-                        earum aperiam.</p>
-                </div>
-            </div>
+  <div class="heading-row">
+    <h3 class="text-3xl font-semibold sm:text-5xl text-center">Faculty</h3>
+  </div>
+  <div class="faculty-container">
+    <div class="faculty" *ngFor="let faculty of facultyList" [routerLink]="['detail',faculty?.id]">
+      <div class="faculty-column">
+        <div class="faculty-image">
+          <img src="../../../assets/Matthew_2_listing.jpg" alt="Professor Jamal Akhtar">
         </div>
+        <div class="faculty-content">
+          <h3>{{faculty.name}}</h3>
+          <h5>{{faculty.designation}}</h5>
+          <p>{{faculty.description}}.</p>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
+<ng-container *ngIf="isLoading">
+  <app-loader></app-loader>
+</ng-container>

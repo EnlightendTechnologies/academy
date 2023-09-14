@@ -22,4 +22,7 @@ export class CourseService {
   createCourse(payload:Course):Observable<HttpResponse>{
     return this.http.post<HttpResponse>(`${environment?.apiUrl}courses/`,payload)
   }
+  getFaculty():Observable<any> {
+    return this.http.get<HttpResponse>(`${environment?.apiUrl}faculty/`);
+  }
 }
