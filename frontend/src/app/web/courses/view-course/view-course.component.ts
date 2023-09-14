@@ -14,7 +14,7 @@ export class ViewCourseComponent implements OnInit {
   courseList:Course[] = [];
 
   constructor(private route :ActivatedRoute,private courseService: CourseService){
-    
+
   }
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];

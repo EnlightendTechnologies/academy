@@ -1,1 +1,29 @@
-<p>view-faculty works!</p>
+<div class="container">
+  <div class="heading-row">
+    <h3 class="text-4xl font-semibold sm:text-5xl text-center">{{facultyBean[0].name}}</h3>
+    <p>fefwfewfewfewfwewfew</p>
+  </div>
+  <div class="faculty-container">
+    <div class="faculty">
+      <div class="faculty-img">
+        <img src="../../../../assets/Matthew_2_listing.jpg" alt="faculty-detail">
+      </div>
+      <div class="faculty-detail">
+        <div class="faculty-timeline">
+          <ul>
+            <li>Name: {{ facultyBean[0].name }}</li>
+            <li>Designation: {{ facultyBean[0].designation }}</li>
+            <li>Phone Number: {{ facultyBean[0].phoneNumber }}</li>
+            <li>Email: {{ facultyBean[0].email }}</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+<ng-container *ngIf="isLoading">
+  <app-loader></app-loader>
+</ng-container>

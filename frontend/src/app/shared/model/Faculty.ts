@@ -4,6 +4,7 @@ export class Faculty {
   name!: string;
   description!: string;
   phoneNumber!:number;
-  designation!:string
+  designation!:string;
+  email!:string;
 
 }

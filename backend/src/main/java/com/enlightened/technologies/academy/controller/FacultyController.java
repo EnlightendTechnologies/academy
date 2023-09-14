@@ -16,12 +16,15 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,7 +58,7 @@ public class FacultyController {
             facultyListItem.setId(faculty.getId());
             facultyListItem.setName(faculty.getName());
             facultyListItem.setDescription(faculty.getDescription());
-            facultyListItem.setDesignation(faculty.getDesignation()); // Assuming there's a 'setDesignation' method
+            facultyListItem.setDesignation(faculty.getDesignation());
 
             facultyListItems.add(facultyListItem);
         }
@@ -122,5 +125,16 @@ public class FacultyController {
         return !emailSet.add(newFaculty.getEmail())
                 || !phoneNumberSet.add(newFaculty.getPhoneNumber());
 
+    }
+
+    @GetMapping(path = {"/{facultyId}"}, name = "get-faculty-by-id", produces = "application/json")
+    public ResponseEntity<HttpResponse> getFacultyById(HttpServletRequest request, @PathVariable UUID facultyId) {
+        String logPrefix = request.getRequestURI();
+        HttpResponse response = new HttpResponse(request.getRequestURI());
+        Logger.application.info(Logger.pattern, AcademyApplication.VERSION, logPrefix, "", "");
+        Optional<Faculty> course = facultyRepository.findById(String.valueOf(facultyId));
+        response.setStatus(HttpStatus.OK);
+        response.setData(course);
+        return ResponseEntity.status(response.getStatus()).body(response);
     }
 }

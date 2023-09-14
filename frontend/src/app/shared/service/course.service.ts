@@ -16,13 +16,16 @@ export class CourseService {
   getCourses(): Observable<any> {
     return this.http.get<any>(`${environment?.apiUrl}courses/`);
   }
-  getCourse(id:string | number):Observable<HttpResponse> {
+  getCourse(id: string | number): Observable<HttpResponse> {
     return this.http.get<HttpResponse>(`${environment?.apiUrl}courses/${id}`)
   }
-  createCourse(payload:Course):Observable<HttpResponse>{
-    return this.http.post<HttpResponse>(`${environment?.apiUrl}courses/`,payload)
+  createCourse(payload: Course): Observable<HttpResponse> {
+    return this.http.post<HttpResponse>(`${environment?.apiUrl}courses/`, payload)
   }
-  getFaculty():Observable<any> {
+  getFaculty(): Observable<any> {
     return this.http.get<HttpResponse>(`${environment?.apiUrl}faculty/`);
+  }
+  getFacultyById(id: string | number): Observable<any> {
+    return this.http.get<HttpResponse>(`${environment?.apiUrl}faculty/${id}`);
   }
 }
