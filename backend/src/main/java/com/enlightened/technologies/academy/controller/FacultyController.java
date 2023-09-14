@@ -7,11 +7,12 @@ package com.enlightened.technologies.academy.controller;
 import com.enlightened.technologies.academy.AcademyApplication;
 
 import com.enlightened.technologies.academy.model.Faculty;
-import com.enlightened.technologies.academy.model.Student;
+import com.enlightened.technologies.academy.model.FacultyList;
 import com.enlightened.technologies.academy.repository.FacultyRepository;
 import com.enlightened.technologies.academy.utils.HttpResponse;
 import com.enlightened.technologies.academy.utils.Logger;
 import jakarta.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 import java.util.List;
@@ -45,9 +46,23 @@ public class FacultyController {
         HttpResponse response = new HttpResponse(request.getRequestURI());
         Logger.application.info(Logger.pattern, AcademyApplication.VERSION, logPrefix, "", "");
 
-        List<Faculty> faculty = facultyRepository.findAll(); // Use facultyRepository to fetch faculties
+        List<Faculty> facultyList = facultyRepository.findAll();
+
+        List<FacultyList> facultyListItems = new ArrayList<>();
+
+        for (int i = 0; i < Math.min(3, facultyList.size()); i++) {
+            Faculty course = facultyList.get(i);
+            FacultyList courseListItem = new FacultyList();
+            courseListItem.setId(course.getId());
+            courseListItem.setName(course.getName());
+            courseListItem.setDescription(course.getDescription());
+            courseListItem.setDescription(course.getDesignation());
+
+            facultyListItems.add(courseListItem);
+        }
+
         response.setStatus(HttpStatus.OK);
-        response.setData(faculty);
+        response.setData(facultyListItems);
         return ResponseEntity.status(response.getStatus()).body(response);
     }
 

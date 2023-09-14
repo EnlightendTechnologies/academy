@@ -7,7 +7,6 @@
 package com.enlightened.technologies.academy.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import com.enlightened.technologies.academy.model.Student;
 /**
  *
  * @author Usama Khalid
