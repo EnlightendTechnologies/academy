@@ -11,6 +11,8 @@ import com.enlightened.technologies.academy.repository.CourseRepository;
 import com.enlightened.technologies.academy.utils.HttpResponse;
 import com.enlightened.technologies.academy.utils.Logger;
 import jakarta.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +28,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.Optional;
 import java.util.UUID;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -41,14 +45,11 @@ public class CourseController {
 
     @PostMapping(path = {""}, name = "course-post", produces = "application/json")
     public ResponseEntity<HttpResponse> postCourse(HttpServletRequest request,
+            @RequestParam("file") MultipartFile file,
             @RequestBody Course bodyCourse) {
-
-        //Logs
         String logPrefix = request.getRequestURI();
         HttpResponse response = new HttpResponse(request.getRequestURI());
         Logger.application.info(Logger.pattern, AcademyApplication.VERSION, logPrefix, "", "");
-
-        //Check if Course already exists
         List<Course> courses = courseRepository.findAll();
 
         if (!courses.isEmpty()) {
@@ -62,11 +63,11 @@ public class CourseController {
                 }
             }
         }
-
-        //Save Course
+        if (file != null && !file.isEmpty()) {
+            String imageUrl = saveImage(file);
+            bodyCourse.setImageUrl(imageUrl);
+        }
         Course savedCourse = courseRepository.save(bodyCourse);
-
-        //Set and Send Response
         response.setStatus(HttpStatus.CREATED);
         response.setData(savedCourse);
         return ResponseEntity.status(response.getStatus()).body(response);
@@ -79,21 +80,19 @@ public class CourseController {
         HttpResponse response = new HttpResponse(request.getRequestURI());
         Logger.application.info(Logger.pattern, AcademyApplication.VERSION, logPrefix, "", "");
 
-        
-        
         List<Course> courses = courseRepository.findAll();
-        
+
         List<CourseList> courseListItems = new ArrayList<>();
 
-    for (int i = 0; i < Math.min(3, courses.size()); i++) {
-        Course course = courses.get(i);
-        CourseList courseListItem = new CourseList();
-        courseListItem.setId(course.getId());
-        courseListItem.setName(course.getName());
-        courseListItem.setDescription(course.getDescription());
-        courseListItem.setFee(course.getFee());
-        courseListItems.add(courseListItem);
-    }
+        for (int i = 0; i < Math.min(3, courses.size()); i++) {
+            Course course = courses.get(i);
+            CourseList courseListItem = new CourseList();
+            courseListItem.setId(course.getId());
+            courseListItem.setName(course.getName());
+            courseListItem.setDescription(course.getDescription());
+            courseListItem.setFee(course.getFee());
+            courseListItems.add(courseListItem);
+        }
 
         response.setStatus(HttpStatus.OK);
         response.setData(courseListItems);
@@ -106,9 +105,47 @@ public class CourseController {
         HttpResponse response = new HttpResponse(request.getRequestURI());
         Logger.application.info(Logger.pattern, AcademyApplication.VERSION, logPrefix, "", "");
         Optional<Course> course = courseRepository.findById(String.valueOf(courseId));
-        //Set and Send Response
         response.setStatus(HttpStatus.OK);
         response.setData(course);
         return ResponseEntity.status(response.getStatus()).body(response);
+    }
+
+/**
+ *
+ * @author Usama
+ */
+    
+    private String saveImage(MultipartFile file) {
+        String uploadDirectoryPath = "upload"; 
+        File uploadDirectory = new File(uploadDirectoryPath);
+
+        if (!uploadDirectory.exists()) {
+            uploadDirectory.mkdirs();
+        }
+
+        try {
+            String originalFilename = file.getOriginalFilename();
+            String extension = getFileExtension(originalFilename);
+            String uniqueFileName = UUID.randomUUID().toString() + "." + extension;
+
+            String filePath = uploadDirectoryPath + File.separator + uniqueFileName;
+            File imageFile = new File(filePath);
+            file.transferTo(imageFile);
+
+            String imageUrl = "/upload/" + uniqueFileName;
+
+            return imageUrl;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private String getFileExtension(String fileName) {
+        int dotIndex = fileName.lastIndexOf(".");
+        if (dotIndex > 0) {
+            return fileName.substring(dotIndex + 1);
+        }
+        return "";
     }
 }

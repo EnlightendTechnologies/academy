@@ -19,9 +19,16 @@ export class CourseService {
   getCourse(id: string | number): Observable<HttpResponse> {
     return this.http.get<HttpResponse>(`${environment?.apiUrl}courses/${id}`)
   }
-  createCourse(payload: Course): Observable<HttpResponse> {
-    return this.http.post<HttpResponse>(`${environment?.apiUrl}courses/`, payload)
+  createCourse(payload: any, file: File): Observable<any> {
+    const formData = new FormData();
+    for (const key in payload) {
+      formData.append(key, payload[key]);
+    }
+    formData.append('file', file);
+
+    return this.http.post<any>(`${environment.apiUrl}courses/`, formData);
   }
+
   getFaculty(): Observable<any> {
     return this.http.get<HttpResponse>(`${environment?.apiUrl}faculty/`);
   }

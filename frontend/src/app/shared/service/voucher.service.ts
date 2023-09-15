@@ -164,7 +164,8 @@ export class VoucherService {
                       margin: [0, 2, 0, 0],
                     },
                     {
-                      text: `Student ID. ${this.student[0]?.studentId <= 10 ? '0' + this.student[0]?.studentId : this.student[0]?.studentId}`,                      fontSize: 9,
+                      text: `Student ID. ${this.student[0]?.studentId <= 10 ? '0' + this.student[0]?.studentId : this.student[0]?.studentId}`,
+                      fontSize: 9,
                       bold: false,
                       margin: [0, 2, 0, 0],
                       alignment: 'left',
@@ -303,7 +304,7 @@ export class VoucherService {
                       margin: [0, 2, 0, 0],
                     },
                     {
-                      text: `Student ID. 02221`,
+                      text: `Student ID. ${this.student[0]?.studentId <= 10 ? '0' + this.student[0]?.studentId : this.student[0]?.studentId}`,
                       fontSize: 9,
                       bold: false,
                       margin: [0, 2, 0, 0],
@@ -443,7 +444,7 @@ export class VoucherService {
                       margin: [0, 2, 0, 0],
                     },
                     {
-                      text: `Student ID. 02221`,
+                      text: `Student ID. ${this.student[0]?.studentId <= 10 ? '0' + this.student[0]?.studentId : this.student[0]?.studentId}`,
                       fontSize: 9,
                       bold: false,
                       margin: [0, 2, 0, 0],

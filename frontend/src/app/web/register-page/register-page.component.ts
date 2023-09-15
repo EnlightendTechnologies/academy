@@ -59,13 +59,13 @@ export class RegisterPageComponent implements OnInit {
     this.studentDataForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      cnic: ['', [Validators.required, Validators.pattern(/^\d{13}$/)]],
-      parentCNIC: ['', [Validators.required, Validators.pattern(/^\d{13}$/)]],
+      CNIC: ['', [Validators.required, Validators.pattern(/^\d{13}$/)]],
+      fathersCNIC: ['', [Validators.required, Validators.pattern(/^\d{13}$/)]],
       email: ['', [Validators.required, Validators.email]],
       address: ['', Validators.required],
-      phoneNumber: ['', [Validators.required, Validators.pattern(/^0\d{10}$/)]],
+      phone: ['', [Validators.required, Validators.pattern(/^0\d{10}$/)]],
       gender: ['', Validators.required],
-      birthDate: ['', Validators.required],
+      dateOfBirth: ['', Validators.required],
       qualification: ['', Validators.required],
     });
 
@@ -103,7 +103,21 @@ export class RegisterPageComponent implements OnInit {
 
   async postStudent(): Promise<void> {
     return new Promise<void>((resolve, reject) => {
-      this.studentService.addStudent(this.studentDataForm.value).subscribe({
+      const formValues = this.studentDataForm.value;
+      const studentData: Student = {
+        firstName: formValues.firstName,
+        lastName: formValues.lastName,
+        email: formValues.email,
+        address: formValues.address,
+        phoneNumber: formValues.phone,
+        gender: formValues.gender,
+        birthDate: formValues.dateOfBirth,
+        cnic: formValues.CNIC,
+        parentCNIC: formValues.fathersCNIC,
+        qualification: formValues.qualification,
+        studentId: 0
+      };
+      this.studentService.addStudent(studentData).subscribe({
         next: (response) => {
           console.log('Success!', response),
             (this.studentId = response.data.id),
@@ -119,11 +133,6 @@ export class RegisterPageComponent implements OnInit {
           reject();
         },
       });
-    });
-  }
-  resetCNIC() {
-    this.studentDataForm = this.formBuilder.group({
-      CNIC: ['', [Validators.required, Validators.pattern(/^\d{13}$/)]],
     });
   }
 
@@ -225,9 +234,9 @@ export class RegisterPageComponent implements OnInit {
         if (type === 'email') {
           this.studentDataForm.controls['email'].setValue(null);
         } else if (type === 'phoneNumber') {
-          this.studentDataForm.controls['phoneNumber'].setValue(null);
+          this.studentDataForm.controls['phone'].setValue(null);
         } else if (type === 'cnic') {
-          this.studentDataForm.controls['cnic'].setValue(null);
+          this.studentDataForm.controls['CNIC'].setValue(null);
         }
       },
     });
