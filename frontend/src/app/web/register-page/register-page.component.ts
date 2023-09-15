@@ -59,13 +59,13 @@ export class RegisterPageComponent implements OnInit {
     this.studentDataForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      CNIC: ['', [Validators.required, Validators.pattern(/^\d{13}$/)]],
-      fathersCNIC: ['', [Validators.required, Validators.pattern(/^\d{13}$/)]],
+      cnic: ['', [Validators.required, Validators.pattern(/^\d{13}$/)]],
+      parentCNIC: ['', [Validators.required, Validators.pattern(/^\d{13}$/)]],
       email: ['', [Validators.required, Validators.email]],
       address: ['', Validators.required],
-      phone: ['', [Validators.required, Validators.pattern(/^0\d{10}$/)]],
+      phoneNumber: ['', [Validators.required, Validators.pattern(/^0\d{10}$/)]],
       gender: ['', Validators.required],
-      dateOfBirth: ['', Validators.required],
+      birthDate: ['', Validators.required],
       qualification: ['', Validators.required],
     });
 
@@ -103,20 +103,7 @@ export class RegisterPageComponent implements OnInit {
 
   async postStudent(): Promise<void> {
     return new Promise<void>((resolve, reject) => {
-      const formValues = this.studentDataForm.value;
-      const studentData: Student = {
-        firstName: formValues.firstName,
-        lastName: formValues.lastName,
-        email: formValues.email,
-        address: formValues.address,
-        phoneNumber: formValues.phone,
-        gender: formValues.gender,
-        birthDate: formValues.dateOfBirth,
-        cnic: formValues.CNIC,
-        parentCNIC: formValues.fathersCNIC,
-        qualification: formValues.qualification,
-      };
-      this.studentService.addStudent(studentData).subscribe({
+      this.studentService.addStudent(this.studentDataForm.value).subscribe({
         next: (response) => {
           console.log('Success!', response),
             (this.studentId = response.data.id),
@@ -176,25 +163,7 @@ export class RegisterPageComponent implements OnInit {
 
 
   }
-  ondi(): void {
-    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      width: '400px',
-      height: '200px',
-      data: {
-        message: 'Are you sure you want to proceed with the Registration ?',
-        buttonText: {
-          ok: 'Yes',
-          cancel: 'No',
-        },
-      },
-    });
-    dialogRef.afterClosed().subscribe((result: boolean) => {
-      if (result) {
-        // this.postEnrollment();
 
-      }
-    });
-  }
   isCourseSelected(): boolean {
     return this.availableCourses.some((course) => course.checked);
   }
@@ -256,9 +225,9 @@ export class RegisterPageComponent implements OnInit {
         if (type === 'email') {
           this.studentDataForm.controls['email'].setValue(null);
         } else if (type === 'phoneNumber') {
-          this.studentDataForm.controls['phone'].setValue(null);
+          this.studentDataForm.controls['phoneNumber'].setValue(null);
         } else if (type === 'cnic') {
-          this.studentDataForm.controls['CNIC'].setValue(null);
+          this.studentDataForm.controls['cnic'].setValue(null);
         }
       },
     });

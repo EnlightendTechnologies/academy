@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import * as pdfMake from 'pdfmake/build/pdfmake'
 import * as pdfFonts from 'pdfmake/build/vfs_fonts'
 import { environment } from '../../../environments/environment';
-import { Student, StudentRegisterationSlip } from '../model/Student';
+import { Student } from '../model/Student';
 import { Observable } from 'rxjs';
 import { HttpResponse } from '../model/HttpResponse';
 import { Enrollment } from '../model/Enrollment';
@@ -53,10 +53,10 @@ function numberToWords(number: number): string {
 export class VoucherService {
   totalFee: number = 0;
   student: Student[] = [];
-  courseList:  Enrollment[] | undefined = [];
+  courseList: Enrollment[] | undefined = [];
   constructor(private http: HttpClient) {
 
-    
+
   }
 
   ngOnInit() {
@@ -70,7 +70,7 @@ export class VoucherService {
         }
       });
     }
-  
+
   }
   formatDate(date: Date) {
     var d = new Date(date),
@@ -164,8 +164,7 @@ export class VoucherService {
                       margin: [0, 2, 0, 0],
                     },
                     {
-                      text: `Student ID. 02221`,
-                      fontSize: 9,
+                      text: `Student ID. ${this.student[0]?.studentId <= 10 ? '0' + this.student[0]?.studentId : this.student[0]?.studentId}`,                      fontSize: 9,
                       bold: false,
                       margin: [0, 2, 0, 0],
                       alignment: 'left',
@@ -609,4 +608,4 @@ interface Course1 {
   id: string;
   name: string;
   fee: number;
-} 
+}

@@ -36,26 +36,26 @@
                   </mat-form-field>
 
                   <mat-form-field appearance="outline">
-                    <input placeholder="CNIC" matInput type="text" formControlName="CNIC" [maxLength]="13" required
+                    <input placeholder="CNIC" matInput type="text" formControlName="cnic" [maxLength]="13" required
                       pattern="^\d{13}$" (change)="isExisting($event,'cnic')" />
                     <mat-error *ngIf="
-                        studentDataForm.controls['CNIC'].hasError('required')
+                        studentDataForm.controls['cnic'].hasError('required')
                       ">CNIC is required</mat-error>
                     <mat-error *ngIf="
-                        studentDataForm.controls['CNIC'].hasError('pattern')
+                        studentDataForm.controls['cnic'].hasError('pattern')
                       ">Invalid CNIC (must be 13 digits)</mat-error>
                   </mat-form-field>
 
                   <mat-form-field appearance="outline">
-                    <input placeholder="Father's CNIC " matInput type="text" formControlName="fathersCNIC"
+                    <input placeholder="Father's CNIC " matInput type="text" formControlName="parentCNIC"
                       [maxLength]="13" required pattern="^\d{13}$" />
                     <mat-error *ngIf="
-                        studentDataForm.controls['fathersCNIC'].hasError(
+                        studentDataForm.controls['parentCNIC'].hasError(
                           'required'
                         )
                       ">Father's CNIC is required</mat-error>
                     <mat-error *ngIf="
-                        studentDataForm.controls['fathersCNIC'].hasError(
+                        studentDataForm.controls['parentCNIC'].hasError(
                           'pattern'
                         )
                       ">Invalid Father's CNIC (must be 13 digits)</mat-error>
@@ -74,22 +74,22 @@
                   </mat-form-field>
 
                   <mat-form-field appearance="outline">
-                    <input matInput placeholder="Phone Number" type="tel" formControlName="phone" [maxLength]="11"
+                    <input matInput placeholder="Phone Number" type="tel" formControlName="phoneNumber" [maxLength]="11"
                       required pattern="^0\d{10}$" (change)="isExisting($event,'phoneNumber')" />
                     <mat-error *ngIf="
-                        studentDataForm.controls['phone'].hasError('required')
+                        studentDataForm.controls['phoneNumber'].hasError('required')
                       ">Phone Number is required</mat-error>
                     <mat-error *ngIf="
-                        studentDataForm.controls['phone'].hasError('pattern')
+                        studentDataForm.controls['phoneNumber'].hasError('pattern')
                       ">Invalid Phone Number (must start with 0, 11
                       digits)</mat-error>
                   </mat-form-field>
                   <mat-form-field appearance="outline">
-                    <input matInput [matDatepicker]="picker" formControlName="dateOfBirth" placeholder="Date of Birth">
+                    <input matInput [matDatepicker]="picker" formControlName="birthDate" placeholder="Date of Birth">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                     <mat-error *ngIf="
-                    studentDataForm.controls['dateOfBirth'].hasError(
+                    studentDataForm.controls['birthDate'].hasError(
                       'required'
                     )
                   ">Date of Birth is required</mat-error>
