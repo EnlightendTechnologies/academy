@@ -11,7 +11,7 @@ import { CourseService } from 'src/app/shared/service/course.service';
 export class ViewFacultyComponent {
   id: string | number = -1;
   isLoading: boolean = false;
-  facultyBean: Faculty[] = [];
+  facultyBean!: Faculty;
 
   constructor(private route: ActivatedRoute, private courseService: CourseService,) {
 
@@ -24,7 +24,7 @@ export class ViewFacultyComponent {
     this.courseService.getFacultyById(this.id).subscribe({
       next: (response) => {
         this.isLoading = false;
-        if (response.data) this.facultyBean = response.data as Faculty[];
+        if (response.data) this.facultyBean = response.data as Faculty;
       },
       error: (error) => console.error('Failed to fetch courses:', error),
     });

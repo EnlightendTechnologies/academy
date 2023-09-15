@@ -1,7 +1,7 @@
 <div class="container">
   <div class="heading-row">
-    <h3 class="text-4xl font-semibold sm:text-5xl text-center">{{facultyBean[0].name}}</h3>
-    <p>fefwfewfewfewfwewfew</p>
+    <h3 class="text-4xl font-semibold sm:text-5xl text-center"></h3>
+
   </div>
   <div class="faculty-container">
     <div class="faculty">
@@ -10,12 +10,12 @@
       </div>
       <div class="faculty-detail">
         <div class="faculty-timeline">
-          <ul>
-            <li>Name: {{ facultyBean[0].name }}</li>
-            <li>Designation: {{ facultyBean[0].designation }}</li>
-            <li>Phone Number: {{ facultyBean[0].phoneNumber }}</li>
-            <li>Email: {{ facultyBean[0].email }}</li>
-          </ul>
+          <h3>{{ facultyBean.name }}</h3>
+          <h5> {{ facultyBean.designation }}</h5>
+          <h5> {{ facultyBean.phoneNumber }}</h5>
+          <h5> {{ facultyBean.email }}</h5>
+          <p>"{{ facultyBean.description }}"</p>
+
         </div>
       </div>
 

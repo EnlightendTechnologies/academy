@@ -26,6 +26,9 @@
           font-size: 22px;
         }
 
+        h5 {
+          margin: 1rem 0;
+        }
         ul {
           display: flex;
           flex-direction: column;
@@ -49,24 +52,6 @@
           margin: 2rem 0;
           display: flex;
           justify-content: left;
-        }
-      }
-    }
-
-    .summary {
-      margin: 1rem 0;
-      padding: 1rem 2rem;
-
-      .summary-content {
-        margin: 1rem 0;
-
-        h3 {
-          color: var(--background-color);
-          font-size: 22px;
-        }
-
-        p {
-          margin: .5rem;
         }
       }
     }
