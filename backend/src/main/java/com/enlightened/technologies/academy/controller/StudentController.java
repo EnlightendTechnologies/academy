@@ -35,6 +35,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 @RequestMapping("/students/")
 @CrossOrigin("*")
 public class StudentController {
+    
+    private static long count = 1;
 
     @Autowired
     private StudentRepository studentRepository;
@@ -56,6 +58,7 @@ public class StudentController {
         }
 
         try {
+            newStudent.setStudentId(count++);
             Student savedStudent = studentRepository.save(newStudent);
             response.setStatus(HttpStatus.CREATED);
             response.setData(savedStudent);

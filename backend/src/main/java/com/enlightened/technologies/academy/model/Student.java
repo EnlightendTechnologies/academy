@@ -65,6 +65,9 @@ public class Student implements Serializable {
 
     @Column(name = "qualification", length = 50)
     private String qualification;
+    
+    @Column(name = "StudentId", unique = true)
+    private long studentId;
 
     @OneToMany(mappedBy = "student")
 //    @JsonIgnore
