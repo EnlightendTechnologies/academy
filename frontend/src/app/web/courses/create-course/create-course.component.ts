@@ -23,10 +23,10 @@ export class CreateCourseComponent {
   constructor(private formBuilder: FormBuilder, private courseService: CourseService) {
     this.courseForm = this.formBuilder.group({
       id: [''],
-      name: [''],
-      description: [''],
-      fee: [''],
-      imageUrl: [''],
+      name: ['vrvervreverv'],
+      description: ['fdgfdgfdgfdgfd'],
+      fee: ['3000'],
+      imageUrl: ['regrere'],
       courseIntroduction: ['fewfewfewffewfwfw'],
       syllabus: ['fewfewfewfwwfwf']
     });
@@ -34,34 +34,23 @@ export class CreateCourseComponent {
   submitForm(): void {
     console.log(this.courseForm);
     if (this.courseForm.invalid) return;
+      console.log(this.courseForm.value);
 
-    // const payload: Course = {
-    //   id: '',
-    //   name: this.courseForm.value.name,
-    //   description: this.courseForm.value.description,
-    //   fee: this.courseForm.value.fee,
-    //   imageUrl: this.file,
-    //   courseIntroduction: this.courseForm.value.courseIntroduction,
-    //   syllabus: this.courseForm.value.syllabus,
-    // };
+      this.courseService.createCourse(this.courseForm.value).subscribe({
+        next: (response: any) => {
+          this.isLoading = false;
+          this.courseForm.reset();
+        },
+        error: (error: any) => console.error('Failed to create course:', error),
+      });
+    }
 
-    //   console.log(this.courseForm.value);
-
-    //   this.courseService.createCourse(payload).subscribe({
-    //     next: (response: any) => {
-    //       this.isLoading = false;
-    //       this.courseForm.reset();
-    //     },
-    //     error: (error: any) => console.error('Failed to create course:', error),
-    //   });
-    // }
-
-
-  }
-  onFileSelected(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      this.file = file
+    onFileSelected(event: any) {
+      const file = event.target.files[0];
+      if (file) {
+        this.file = file
+      }
     }
   }
-}
+
+

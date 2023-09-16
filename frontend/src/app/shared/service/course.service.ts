@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpResponse } from '../model/HttpResponse';
-import { Course } from '../model/Course';
+
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +20,7 @@ export class CourseService {
     return this.http.get<HttpResponse>(`${environment?.apiUrl}courses/${id}`)
   }
   createCourse(payload: any): Observable<any> {
-
-    return this.http.post<any>(`${environment.apiUrl}courses/`, payload);
+    return this.http.post<any>(`${environment.apiUrl}courses/`,payload);
   }
 
   getFaculty(): Observable<any> {
