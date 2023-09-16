@@ -43,35 +43,42 @@ public class CourseController {
     @Autowired
     private CourseRepository courseRepository;
 
-    @PostMapping(path = {""}, name = "course-post", produces = "application/json")
-    public ResponseEntity<HttpResponse> postCourse(HttpServletRequest request,
-            @RequestParam("file") MultipartFile file,
-            @RequestBody Course bodyCourse) {
-        String logPrefix = request.getRequestURI();
-        HttpResponse response = new HttpResponse(request.getRequestURI());
-        Logger.application.info(Logger.pattern, AcademyApplication.VERSION, logPrefix, "", "");
-        List<Course> courses = courseRepository.findAll();
+  @PostMapping(path = { "" }, name = "course-post", produces = "application/json")
+public ResponseEntity<HttpResponse> postCourse(HttpServletRequest request,
+        @RequestBody Course bodyCourse) {
+    String logPrefix = request.getRequestURI();
+    HttpResponse response = new HttpResponse(request.getRequestURI());
+    Logger.application.info(Logger.pattern, AcademyApplication.VERSION, logPrefix, "", "");
+    List<Course> courses = courseRepository.findAll();
 
-        if (!courses.isEmpty()) {
-
-            for (Course course : courses) {
-                if (course.getName().equals(bodyCourse.getName())) {
-                    Logger.application.info(Logger.pattern, AcademyApplication.VERSION, logPrefix, " Coourse Already Exists ");
-                    response.setStatus(HttpStatus.CONFLICT);
-                    response.setError("Course Already Exists");
-                    return ResponseEntity.status(response.getStatus()).body(response);
-                }
+    if (!courses.isEmpty()) {
+        for (Course course : courses) {
+            if (course.getName().equals(bodyCourse.getName())) {
+                Logger.application.info(Logger.pattern, AcademyApplication.VERSION, logPrefix,
+                        "Course Already Exists");
+                response.setStatus(HttpStatus.CONFLICT);
+                response.setError("Course Already Exists");
+                return ResponseEntity.status(response.getStatus()).body(response);
             }
         }
-        if (file != null && !file.isEmpty()) {
-            String imageUrl = saveImage(file);
-            bodyCourse.setImageUrl(imageUrl);
-        }
-        Course savedCourse = courseRepository.save(bodyCourse);
-        response.setStatus(HttpStatus.CREATED);
-        response.setData(savedCourse);
+    }
+
+    if (bodyCourse.getImageUrl() == null || bodyCourse.getImageUrl().isEmpty()) {
+        // Handle the case where imageUrl is not provided in the request
+        response.setStatus(HttpStatus.BAD_REQUEST);
+        response.setError("Image URL is required");
         return ResponseEntity.status(response.getStatus()).body(response);
     }
+
+    // You can further validate imageUrl if needed.
+
+    // Save the course to the database
+    Course savedCourse = courseRepository.save(bodyCourse);
+
+    response.setStatus(HttpStatus.CREATED);
+    response.setData(savedCourse);
+    return ResponseEntity.status(response.getStatus()).body(response);
+}
 
     @GetMapping(path = {""}, name = "course-get-all", produces = "application/json")
     public ResponseEntity<HttpResponse> getCourses(HttpServletRequest request) {

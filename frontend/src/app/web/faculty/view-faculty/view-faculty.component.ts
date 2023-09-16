@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Faculty } from 'src/app/shared/model/Faculty';
 import { CourseService } from 'src/app/shared/service/course.service';
@@ -8,7 +8,7 @@ import { CourseService } from 'src/app/shared/service/course.service';
   templateUrl: './view-faculty.component.html',
   styleUrls: ['./view-faculty.component.scss']
 })
-export class ViewFacultyComponent {
+export class ViewFacultyComponent implements OnInit {
   id: string | number = -1;
   isLoading: boolean = false;
   facultyBean!: Faculty;

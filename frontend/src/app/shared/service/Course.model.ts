@@ -3,5 +3,7 @@ export interface Course {
     name: string,
     description: string
     fee: number,
-    imageUrl: string | number
+    imageUrl: string | null,
+    courseIntroduction:string,
+    syllabus:string
 }

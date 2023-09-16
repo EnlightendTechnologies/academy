@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -19,14 +19,9 @@ export class CourseService {
   getCourse(id: string | number): Observable<HttpResponse> {
     return this.http.get<HttpResponse>(`${environment?.apiUrl}courses/${id}`)
   }
-  createCourse(payload: any, file: File): Observable<any> {
-    const formData = new FormData();
-    for (const key in payload) {
-      formData.append(key, payload[key]);
-    }
-    formData.append('file', file);
+  createCourse(payload: any): Observable<any> {
 
-    return this.http.post<any>(`${environment.apiUrl}courses/`, formData);
+    return this.http.post<any>(`${environment.apiUrl}courses/`, payload);
   }
 
   getFaculty(): Observable<any> {

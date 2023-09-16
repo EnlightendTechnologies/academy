@@ -4,6 +4,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Course } from 'src/app/shared/model/Course';
 import { CourseService } from 'src/app/shared/service/course.service';
 
 
@@ -15,7 +16,7 @@ import { CourseService } from 'src/app/shared/service/course.service';
 export class CreateCourseComponent {
   isLoading: boolean = false;
   courseForm: FormGroup;
-  file!:File
+  file!: File
   uploadedImages: string[] = [];
 
 
@@ -26,27 +27,41 @@ export class CreateCourseComponent {
       description: [''],
       fee: [''],
       imageUrl: [''],
-      courseIntroduction:['fewfewfewffewfwfw'],
-      syllabus:['fewfewfewfwwfwf']
+      courseIntroduction: ['fewfewfewffewfwfw'],
+      syllabus: ['fewfewfewfwwfwf']
     });
   }
   submitForm(): void {
     console.log(this.courseForm);
     if (this.courseForm.invalid) return;
-    this.courseService.createCourse(this.courseForm.value, this.file).subscribe({
-      next: (response:any) => {
-        this.isLoading = false;
-        this.courseForm.reset();
-      },
-      error: (error:any) => console.error('Failed to fetch courses:', error),
-    })
+
+    // const payload: Course = {
+    //   id: '',
+    //   name: this.courseForm.value.name,
+    //   description: this.courseForm.value.description,
+    //   fee: this.courseForm.value.fee,
+    //   imageUrl: this.file,
+    //   courseIntroduction: this.courseForm.value.courseIntroduction,
+    //   syllabus: this.courseForm.value.syllabus,
+    // };
+
+    //   console.log(this.courseForm.value);
+
+    //   this.courseService.createCourse(payload).subscribe({
+    //     next: (response: any) => {
+    //       this.isLoading = false;
+    //       this.courseForm.reset();
+    //     },
+    //     error: (error: any) => console.error('Failed to create course:', error),
+    //   });
+    // }
+
 
   }
   onFileSelected(event: any) {
     const file = event.target.files[0];
     if (file) {
-     this.file = file
+      this.file = file
     }
   }
-
 }
