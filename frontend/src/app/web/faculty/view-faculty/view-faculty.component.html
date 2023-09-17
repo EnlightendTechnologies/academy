@@ -1,29 +1,26 @@
-<div class="container">
+<div class="container-fluid">
   <div class="heading-row">
-    <h3 class="text-4xl font-semibold sm:text-5xl text-center"></h3>
-
   </div>
   <div class="faculty-container">
     <div class="faculty">
-      <div class="faculty-img">
-        <img src="../../../../assets/Matthew_2_listing.jpg" alt="faculty-detail">
-      </div>
-      <div class="faculty-detail">
-        <div class="faculty-timeline">
+      <div class="faculty-column">
+        <div class="faculty-image">
+          <img src="../../../assets/Matthew_2_listing.jpg" alt="Professor Jamal Akhtar">
+        </div>
+        <div class="faculty-content">
           <h3>{{ facultyBean.name }}</h3>
-          <h5> {{ facultyBean.designation }}</h5>
-          <h5> {{ facultyBean.phoneNumber }}</h5>
-          <h5> {{ facultyBean.email }}</h5>
-          <p>"{{ facultyBean.description }}"</p>
-
+          <h5><i class="fa fa-university" aria-hidden="true"></i> {{ facultyBean.designation }}</h5>
+          <h5><i class="fa fa-phone-square" aria-hidden="true"></i> {{ facultyBean.phoneNumber }}</h5>
+          <h5><i class="fa fa-envelope" aria-hidden="true"></i> {{ facultyBean.email }}</h5>
+          <p><i class="fa fa-quote-left" aria-hidden="true"></i>{{ facultyBean.description }}<i
+              class="fa fa-quote-right" aria-hidden="true"></i></p>
         </div>
       </div>
-
     </div>
-
   </div>
-
 </div>
+
+
 <ng-container *ngIf="isLoading">
   <app-loader></app-loader>
 </ng-container>

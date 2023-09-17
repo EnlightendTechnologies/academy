@@ -12,7 +12,6 @@ export class CourseService {
 
   constructor(private http: HttpClient) { }
 
-  // Get All Courses
   getCourses(): Observable<any> {
     return this.http.get<any>(`${environment?.apiUrl}courses/`);
   }
@@ -23,10 +22,4 @@ export class CourseService {
     return this.http.post<any>(`${environment.apiUrl}courses/`,payload);
   }
 
-  getFaculty(): Observable<any> {
-    return this.http.get<HttpResponse>(`${environment?.apiUrl}faculty/`);
-  }
-  getFacultyById(id: string | number): Observable<any> {
-    return this.http.get<HttpResponse>(`${environment?.apiUrl}faculty/${id}`);
-  }
 }
