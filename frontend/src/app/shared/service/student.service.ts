@@ -42,10 +42,3 @@ export class StudentService {
   }
 
 }
-interface Course {
-  id: string;
-  name: string;
-  description: string;
-  fee: number;
-  checked: boolean;
-}

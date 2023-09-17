@@ -9,7 +9,6 @@ import com.enlightened.technologies.academy.model.Student;
 import com.enlightened.technologies.academy.repository.StudentRepository;
 import com.enlightened.technologies.academy.utils.HttpResponse;
 import com.enlightened.technologies.academy.utils.Logger;
-import com.enlightened.technologies.academy.utils.StudentId;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.Comparator;
 import java.util.HashSet;
