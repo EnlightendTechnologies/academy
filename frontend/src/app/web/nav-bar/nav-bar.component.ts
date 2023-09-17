@@ -24,20 +24,7 @@ export class NavbarComponent {
   onLogin() {
     this.router.navigateByUrl('/login');
   }
-  @HostListener('window:scroll', ['$event'])
-  onWindowScroll(event: Event) {
-    const scrollY = window.scrollY;
-    if (window.scrollY >= 80) {
-      this.scrollY = true;
-      // alert("scroll huwa hai");
-  }
-  else {
-    this.scrollY = false;
-    // alert("nh huwa hai");
 
-
-  }
-  }
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;

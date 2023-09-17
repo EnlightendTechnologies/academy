@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { CourseService } from 'src/app/shared/service/course.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-courses',
@@ -11,7 +10,7 @@ export class CoursesComponent {
   selectedCourses: any[];
   isLoading: boolean = false;
 
-  constructor(private router: Router, private courseService: CourseService,) {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
     this.selectedCourses = [];
     this.fetchCourses()
   }
@@ -22,15 +21,19 @@ export class CoursesComponent {
   }
   fetchCourses(): void {
     this.isLoading = true;
-    this.courseService.getCourses().subscribe({
-      next: (response) => {
+    this.activatedRoute.data.subscribe(
+      (response: any) => {
+        console.log(response)
         this.isLoading = false;
-        this.selectedCourses = response.data.map((course: any) => ({
+        this.selectedCourses = response.getCourses.data.map((course: any) => ({
           ...course,
           checked: false,
         }));
       },
-      error: (error) => console.error('Failed to fetch courses:', error),
-    });
+      (error: any) => {
+        console.error('Failed to fetch courses:', error);
+        this.isLoading = false;
+      }
+    );
   }
 }

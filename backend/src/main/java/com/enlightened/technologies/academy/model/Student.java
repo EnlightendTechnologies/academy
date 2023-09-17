@@ -72,5 +72,7 @@ public class Student implements Serializable {
     @OneToMany(mappedBy = "student")
 //    @JsonIgnore
     private List<Enrollment> enrollments;
+    
+  
 
 }

@@ -9,7 +9,9 @@ import com.enlightened.technologies.academy.model.Student;
 import com.enlightened.technologies.academy.repository.StudentRepository;
 import com.enlightened.technologies.academy.utils.HttpResponse;
 import com.enlightened.technologies.academy.utils.Logger;
+import com.enlightened.technologies.academy.utils.StudentId;
 import jakarta.servlet.http.HttpServletRequest;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -35,7 +37,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @RequestMapping("/students/")
 @CrossOrigin("*")
 public class StudentController {
-    
+
     private static long count = 1;
 
     @Autowired
@@ -58,7 +60,17 @@ public class StudentController {
         }
 
         try {
-            newStudent.setStudentId(count++);
+            Optional<Long> maxStudentId = students.stream()
+                    .map(Student::getStudentId)
+                    .max(Comparator.naturalOrder());
+
+            Long nextStudentId = maxStudentId.orElse(0L) + 1;
+
+            if (nextStudentId == 0L) {
+                nextStudentId = 1L;
+            }
+
+            newStudent.setStudentId(nextStudentId);
             Student savedStudent = studentRepository.save(newStudent);
             response.setStatus(HttpStatus.CREATED);
             response.setData(savedStudent);
@@ -160,6 +172,7 @@ public class StudentController {
         response.setData(students);
         return ResponseEntity.status(response.getStatus()).body(response);
     }
+
     @GetMapping(path = {"/{studentId}"}, name = "get-student-by-id", produces = "application/json")
     public ResponseEntity<HttpResponse> getStudent(HttpServletRequest request, @PathVariable UUID studentId) {
         String logPrefix = request.getRequestURI();

@@ -1,7 +1,6 @@
-import { Component , OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Course } from 'src/app/shared/model/Course';
-import { CourseService } from 'src/app/shared/service/course.service';
 
 @Component({
   selector: 'app-view-course',
@@ -11,20 +10,20 @@ import { CourseService } from 'src/app/shared/service/course.service';
 export class ViewCourseComponent implements OnInit {
   id: string | number = -1;
   isLoading: boolean = false;
-  courseList:Course[] = [];
+  courseList: Course[] = [];
 
-  constructor(private route :ActivatedRoute,private courseService: CourseService){
+  constructor(private route: ActivatedRoute, private activatedRoute: ActivatedRoute) {
 
   }
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
     this.getCourse();
   }
-  getCourse():void {
-    this.courseService.getCourse(this.id).subscribe({
+  getCourse(): void {
+    this.activatedRoute.data.subscribe({
       next: (response) => {
         this.isLoading = false;
-        this.courseList.push(response.data as unknown as Course)
+        this.courseList.push(response['getCourse'].data as unknown as Course)
       },
       error: (error) => console.error('Failed to fetch courses:', error),
     });
