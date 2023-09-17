@@ -80,8 +80,7 @@ public class CourseController {
 
         List<CourseList> courseListItems = new ArrayList<>();
 
-        for (int i = 0; i < Math.min(3, courses.size()); i++) {
-            Course course = courses.get(i);
+        for (Course course : courses) {
             CourseList courseListItem = new CourseList();
             courseListItem.setId(course.getId());
             courseListItem.setName(course.getName());
